@@ -143,3 +143,6 @@ recognition/migrations
 *.scss
 recognition/yolov8n.pt
 staticfiles
+# ignore folder env
+env/*
+runs/*

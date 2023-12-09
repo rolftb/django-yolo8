@@ -11,11 +11,25 @@ class VideoFrames(AsyncWebsocketConsumer):
         await self.accept()
 
     async def disconnect(self, reason):
-        # WebSocket connection is closed
+        """
+        Called when the WebSocket connection is closed.
+        
+        Args:
+            reason (str): The reason for the disconnection.
+        """
         print("Disconnect from video channel")
         pass
 
     async def receive(self, text_data):
+        """
+        Receives data from the WebSocket connection.
+
+        Parameters:
+            text_data (str): The data received from the WebSocket connection.
+
+        Returns:
+            None
+        """
         # Receive data from the WebSocket connection
         videoSrc_json = json.loads(text_data)
         videoSrc = videoSrc_json.get('videoSrc')
@@ -27,6 +41,15 @@ class VideoFrames(AsyncWebsocketConsumer):
             print("Invalid data format received.")
 
     async def send_video_frames(self, videoSrc):
+        """
+        Sends video frames to the WebSocket client.
+
+        Parameters:
+        - videoSrc (str): The path or URL of the video source.
+
+        Returns:
+        None
+        """
         # Simulate sending video frames to the client
         cap = cv2.VideoCapture(videoSrc)
 
